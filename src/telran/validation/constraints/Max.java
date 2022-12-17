@@ -1,4 +1,4 @@
-package telran.annotation;
+package telran.validation.constraints;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
@@ -8,9 +8,9 @@ import java.lang.annotation.Target;
 
 @Retention(RUNTIME)
 @Target(FIELD)
-public @interface Pattern {
+public @interface Max {
 	
-	String value();
-	String message() default "Pattern constraint violation";
+	double value();
+	String message() default "violation of the maximum limit";
 	
 }
