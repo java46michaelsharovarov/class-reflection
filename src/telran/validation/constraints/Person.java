@@ -1,5 +1,7 @@
 package telran.validation.constraints;
 
+import telran.validation.constraints.annotations.*;
+
 public class Person {
 
 	@Min(1)
@@ -14,7 +16,8 @@ public class Person {
 	@Pattern("[A-Z][a-z]*")
 	@NotEmpty
 	private String name;
-
+	
+	@Pattern("[A-Z][a-z]*")
 	@NotEmpty
 	private String surname;
 

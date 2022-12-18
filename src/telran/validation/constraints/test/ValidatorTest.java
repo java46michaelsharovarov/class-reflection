@@ -1,10 +1,12 @@
-package telran.validation.constraints;
+package telran.validation.constraints.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
+import telran.validation.constraints.*;
 
 class ValidatorTest {
 
@@ -45,17 +47,19 @@ class ValidatorTest {
 	@Test
 	void validateTestWithNullString() {
 		Person person = new Person(123, 1990, null, "Lincoln"); // null name
-		List<String> expected = List.of("violation of the maximum limit - name", "Pattern constraint violation - name", "string must not be empty - name");
-		List<String> validate = Validator.validate(person);
-		assertIterableEquals(expected, validate);
+		List<String> expected = List.of("violation of the maximum limit - name", "Pattern constraint violation - name",
+				"string must not be empty - name");
+		assertIterableEquals(expected, Validator.validate(person));
 	}
 	
 	@Test
 	void validateTestWithWrongData() {
-		Person person = new Person(0, 2023, "Christopher", ""); // id less than 1, year greater than 2022, name of more than 10 letters (11), empty string with surname
-		List<String> expected = List.of("violation of the minimum limit - id", "violation of the maximum limit - yearOfBirth", "violation of the maximum limit - name", "string must not be empty - surname");
-		List<String> validate = Validator.validate(person);
-		assertIterableEquals(expected, validate);
+		// id less than 1, year greater than 2022, name of more than 10 letters (11), empty string with surname
+		Person person = new Person(0, 2023, "Christopher", "");
+		List<String> expected = List.of("violation of the minimum limit - id", "violation of the maximum limit - yearOfBirth",
+				"violation of the maximum limit - name", "Pattern constraint violation - surname",
+				"string must not be empty - surname");
+		assertIterableEquals(expected, Validator.validate(person));
 	}
 
 }
