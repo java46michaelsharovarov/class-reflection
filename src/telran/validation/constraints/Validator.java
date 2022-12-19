@@ -20,11 +20,11 @@ public class Validator {
 		List<String> listOfErrorsByField = new ArrayList<>();
 		Annotation[] annotations = field.getDeclaredAnnotations();
 		Arrays.stream(annotations).forEach(annotation -> {
-			String annotationTypeName = annotation.annotationType().getSimpleName();
+			String annotationTypeName = "validate" + annotation.annotationType().getSimpleName();
 			try {
 				Method method = ValidatorMethods.class.getDeclaredMethod(annotationTypeName, Field.class, Object.class);
 				String res = (String) method.invoke(null, field, obj);
-				if (!res.equals("")) {
+				if (!res.isEmpty()) {
 					listOfErrorsByField.add(res + " - " + field.getName());
 				}
 			} catch (Exception e) {

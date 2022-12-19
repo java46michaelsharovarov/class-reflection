@@ -6,7 +6,7 @@ import telran.validation.constraints.annotations.*;
 
 public class ValidatorMethods {
 
-	public static String Min(Field field, Object obj) {
+	public static String validateMin(Field field, Object obj) {
 		Class<?> typeOfField = field.getType();
 		String res = "";
 		Min min = field.getAnnotation(Min.class);
@@ -36,7 +36,7 @@ public class ValidatorMethods {
 		return res;
 	}
 
-	public static String Max(Field field, Object obj) {
+	public static String validateMax(Field field, Object obj) {
 		Class<?> typeOfField = field.getType();
 		String res = "";
 		Max max = field.getAnnotation(Max.class);
@@ -64,7 +64,7 @@ public class ValidatorMethods {
 		return fieldValue == null || fieldValue.length() > max.value() ? max.message() : "";
 	}
 
-	public static String Pattern(Field field, Object obj) {
+	public static String validatePattern(Field field, Object obj) {
 		String res = "";
 		Pattern pattern = field.getAnnotation(Pattern.class);
 		if (pattern == null) {
@@ -80,7 +80,7 @@ public class ValidatorMethods {
 		return res;
 	}
 
-	public static String NotEmpty(Field field, Object obj) {
+	public static String validateNotEmpty(Field field, Object obj) {
 		String res = "";
 		NotEmpty notEmpty = field.getAnnotation(NotEmpty.class);
 		try {
